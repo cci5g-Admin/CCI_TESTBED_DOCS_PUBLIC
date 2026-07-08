@@ -20,7 +20,7 @@ CCI's xG Testbed documentation
 
    Getting Started <getting_started/user_access>
    OpenStack Guide <getting_started/openstack_v3>
-   GitLab Guide <getting_started/gitlab>
+   Support Guide <getting_started/support>
 
 .. .. toctree::
 ..    :maxdepth: 9
