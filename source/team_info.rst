@@ -61,6 +61,7 @@ Below is the organizational structure for the CCI xG Testbed Team, which defines
 .. figure:: _static/CCI_Org.png
    :alt: structure
    :align: center
+   :width: 900px
 
 |
 
@@ -93,18 +94,17 @@ Director
 Post-Doc Researchers
 ---------------------
 
-
-.. figure:: _static/Madhurra.png
-   :alt: Madhura
+.. figure:: _static/sayanta.png
+   :alt: Sayanta Seth
    :align: left
    :width: 200px
    :height: 200px
 
-- **Name:** Madhura Adeppady
+- **Name:** Sayanta Seth
 - **Role:** Postdoctoral Researcher  
-- **Focus:** Resource-efficient microservice orchestration, edge computing, and serverless systems 
-- **Profile:** `Profile <https://scholar.google.com/citations?user=uvJ9x24AAAAJ&hl=en>`_
-- **Report To:** Dr Aloizio Da Silva 
+- **Focus:** NextG/6G wireless communications, hardware-in-the-loop testbed development, and dynamic spectrum sharing. His work emphasizes FR3/mmWave systems, O-RAN, cognitive radio networks, and beamsteering optimization for next-generation wireless networks.
+- **Profile:** `Profile <https://cyberinitiative.org/research/researcher-directory/seth-sayanta.html>`_
+- **Report To:** Dr Aloizio Da Silva
 
 .. clear::
 |
@@ -209,24 +209,6 @@ The Technical Team includes doctoral students and a subset of master's researche
 
 **Master's Researchers and Interns:**
 
-.. figure:: _static/fahim.png
-   :alt: Fahim Bashar
-   :align: left
-   :width: 200px
-   :height: 230px
-
-- **Name:** Fahim Bashar  
-- **Role:** Graduate Research Assistant
-- **Focus:** NextG Testbed deployment and development
-- **Report To:** Dr Aloizio Da Silva 
-|
-|
-|
-|
-|
-|
-|
-
 .. figure:: _static/Atif.jpeg
    :alt: Atif Ahmed
    :align: left
@@ -243,23 +225,7 @@ The Technical Team includes doctoral students and a subset of master's researche
 |
 |
 
-.. figure:: _static/Dharaneesh_Pic.jpeg
-   :alt: Dharaneesh C.K.V
-   :align: left
-   :width: 200px
-   :height: 230px
 
-- **Name:** Dharaneesh C.K.V  
-- **Role:** Research Intern   
-- **Focus:** Focuses on Fullstack Development and Website Management
-- **Report To:** Dr Aloizio Da Silva 
-|
-|
-|
-|
-|
-|
-|
 
 Admin Team
 ----------
@@ -282,26 +248,62 @@ Admin Team
 |
 |
 
-.. figure:: _static/AhmedNew.png
-   :alt: Ahmed Malik 
-   :align: left
-   :width: 200px
-   :height: 200px
 
-- **Name:** Ahmed Malik  
-- **Role:** Master's Researcher / Intern
-- **Focus:** Network and Server Management support
-- **Report To:** Dr Aloizio Da Silva 
-|
-|
-|
-|
-|
-|
 
 Alumni and Former Students
 ----------------------------
 
+.. container:: person-profile
+
+   .. figure:: _static/Madhurra.png
+      :alt: Madhura Adeppady
+      :width: 200px
+      :height: 220px
+      :target: https://scholar.google.com/citations?user=uvJ9x24AAAAJ&hl=en
+
+   .. container:: person-info
+
+      | Name: `Madhura Adeppady <https://scholar.google.com/citations?user=uvJ9x24AAAAJ&hl=en>`_
+      | Role: Postdoctoral Researcher
+
+.. container:: person-profile
+
+   .. figure:: _static/fahim.png
+      :alt: Fahim Bashar
+      :width: 200px
+      :height: 220px
+      :target: #
+
+   .. container:: person-info
+
+      | Name: Fahim Bashar
+      | Role: Graduate Research Assistant
+
+.. container:: person-profile
+
+   .. figure:: _static/Dharaneesh_Pic.jpeg
+      :alt: Dharaneesh C.K.V
+      :width: 200px
+      :height: 220px
+      :target: #
+
+   .. container:: person-info
+
+      | Name: Dharaneesh C.K.V
+      | Role: Research Intern
+
+.. container:: person-profile
+
+   .. figure:: _static/AhmedNew.png
+      :alt: Ahmed Malik
+      :width: 200px
+      :height: 220px
+      :target: #
+
+   .. container:: person-info
+
+      | Name: Ahmed Malik
+      | Role: Master's Researcher / Intern
 
 .. container:: person-profile
 
