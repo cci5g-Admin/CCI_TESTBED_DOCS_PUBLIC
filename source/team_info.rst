@@ -207,26 +207,6 @@ The Technical Team includes doctoral students and a subset of master's researche
 |
 |
 
-**Master's Researchers and Interns:**
-
-.. figure:: _static/Atif.jpeg
-   :alt: Atif Ahmed
-   :align: left
-   :width: 200px
-   :height: 200px
-
-- **Name:** Atif Ahmed  
-- **Role:** Research Intern 
-- **Focus:** Leading O-RAN Open Fronthaul testing in the ACCoRD project
-- **Report To:** Dr Aloizio Da Silva 
-|
-|
-|
-|
-|
-
-
-
 Admin Team
 ----------
 
@@ -252,6 +232,18 @@ Admin Team
 
 Alumni and Former Students
 ----------------------------
+
+.. container:: person-profile
+
+   .. figure:: _static/Atif.jpeg
+      :alt: Atif Ahmed
+      :width: 200px
+      :height: 220px
+
+   .. container:: person-info
+
+      | Name: Atif Ahmed
+      | Role: Research Intern
 
 .. container:: person-profile
 
