@@ -218,7 +218,7 @@ Admin Team
    :height: 200px
 
 - **Name:** Harshit Sai Teja Doddi  
-- **Role:** Master's Researcher / Intern
+- **Role:** Network Administrator
 - **Focus:** Network Administration and Management
 - **Report To:** Dr Aloizio Da Silva 
 |
