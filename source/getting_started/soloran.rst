@@ -29,6 +29,24 @@ For general project, network, quota, and instance concepts, read the
    :depth: 2
 
 
+Video Tutorial
+==============
+
+Watch the SoloRAN user walkthrough alongside the step-by-step instructions
+below.
+
+.. raw:: html
+
+   <div class="demo-videos">
+     <h3>Using SoloRAN on the CCI xG Testbed</h3>
+     <video controls preload="metadata" playsinline crossorigin="anonymous" width="800">
+       <source src="../_static/SoloRAN-user-guide.mp4" type="video/mp4">
+       Your browser does not support the video tag.
+     </video>
+     <p><a href="../_static/SoloRAN-user-guide.mp4">Download video</a></p>
+   </div>
+
+
 Workflow at a Glance
 ====================
 
