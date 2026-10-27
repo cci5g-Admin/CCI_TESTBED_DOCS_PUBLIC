@@ -22,7 +22,7 @@ Unique features include:
 For further details, please refer to the OTIC description on the `O-RAN Alliance website <https://www.o-ran.org/otics/north-american-otic-in-washington-dc-virginia-tech>`_.
 
 Testing and Evaluation Objective
-===============================
+================================
 
 The end-to-end testing process ensures that each Device Under Test (DUT) is evaluated thoroughly, reliably, and in alignment with industry standards as defined by the O-RAN Alliance. The workflow begins with a clear understanding of customer requirements and progresses through scoped planning, integration, systematic test execution, and result validation. Each step is designed to ensure a seamless and transparent experience from test request to final report delivering actionable insights and high-confidence outcomes.
 
@@ -43,7 +43,9 @@ The following steps describe how the workflow in the above image operates:
    - Supported Features: Indicate capabilities of the DUT.
 
 .. raw:: html
+
    <br>
+
 2. **Test Scope**: Defines the framework and terms of the testing.
 
    - Applicable Tests: Identify test cases relevant to the DUT and its features.
@@ -51,7 +53,9 @@ The following steps describe how the workflow in the above image operates:
    - Agreement: Finalize scope, deliverables, and responsibilities.
 
 .. raw:: html
+
    <br>
+
 3. **Pre-test Integration**: Preparation phase ensuring DUT readiness for testing.
 
    - DUT(s) Delivery: Receive the DUTs and verify their condition.
@@ -59,24 +63,29 @@ The following steps describe how the workflow in the above image operates:
    - Sanity Checks: Run basic checks to ensure DUTs are operational.
 
 .. raw:: html
+
    <br>
+
 4. **Testing**: Execution of planned tests.
 
    - Testing Schedule: Plan and organize the timeline for test execution.
    - Run Tests: Perform all agreed tests per defined scope and procedure.
 
 .. raw:: html
+
    <br>
+
 5. **Validation**: Assess results and report outcomes.
 
    - Test Reports: Document test results, logs, and performance metrics.
    - Identify Failures: Document errors and issues.
 
 .. raw:: html
+
    <br>
 
 Testing and Evaluation Categories
---------------------------------
+---------------------------------
 
 .. toctree::
    :maxdepth: 1
@@ -98,7 +107,7 @@ The CCI xG Testbed deployment is part of the Virginia State Commonwealth Cyber I
 enables users to explore the cutting-edge technology under different range of spectrum (i.e. VT CBRS PAL, FCC Experimental and Commission License) in a real-world environment.
 
 CORNET/CCI SWVA 5G+
-------------------
+-------------------
  
 CORNET/CCI SWVA 5G+ indoor testbed at VT enables research on applications, enabling technologies, and potential enhancements to 5G and future generations of wireless communication systems, as well as other research related to software defined radio, cognitive radio and spectrum sharing including dynamic spectrum access
 
