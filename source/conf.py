@@ -14,7 +14,7 @@ release = '1.0.0'
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-graphviz_dot = r'C:\Program Files\Graphviz\bin\dot.exe'
+# graphviz_dot is left unset so Sphinx uses `dot` from PATH (installed via apt on ReadTheDocs).
 
 
 extensions = [
@@ -40,10 +40,7 @@ html_theme = 'sphinx_rtd_theme'
 html_logo = '_static/xG-rev-4c-01.png'
 #make logo smaller
 html_static_path = ['_static']
-html_css_files = ['width.css']
-
-#rajat commit final
-# # These are relative to the static path.
+# Relative to html_static_path. Full-width content comes from _templates/layout.html.
 html_css_files = [
     'custom.css',
 ]
