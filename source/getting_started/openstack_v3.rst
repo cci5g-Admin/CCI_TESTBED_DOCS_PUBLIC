@@ -38,8 +38,8 @@ often trip up new users.
 * **Terminal access is over ZeroTier**: There is no public SSH and no floating
   IP. You reach every instance - compute, GPU, or radio - over the project's
   ZeroTier network (see :ref:`terminal-access`).
-* **GPU flavors need approval**: Request the GPU flavor from the admin team
-  before attempting a GPU launch, or the launch will fail.
+* **GPU flavors need approval**: Request the GPU flavor through the booking
+  portal before attempting a GPU launch, or the launch will fail.
 * **Book USRPs first**: A radio VM cannot reach an SDR unit that has not been
   reserved for the matching time slot.
 * **Persistent vs ephemeral storage**: Set **Create New Volume = Yes** to keep
@@ -142,10 +142,6 @@ Open **Network → Network Topology** to confirm the layout: your router should
 be linked to ``Main-Internet-Network`` on one side and to your
 ``external-subnet-<firstname>`` on the other. Radio users will also see the
 USRP networks here once an interface is attached.
-
-.. note::
-
-   This section will be expanded with a walkthrough video.
 
 .. tip::
 
@@ -297,9 +293,10 @@ GPU Instance Deployment
 
 .. important::
 
-   Before creating a GPU instance, you must request a GPU flavor by
-   specifying the required GPU version via a ticket to the admin team on
-   **Email**. Without an approved flavor, the launch step below will fail.
+   Before creating a GPU instance, you must request a GPU flavor, specifying
+   the GPU version you need, from the **USRP & GPU Access** tab of the booking
+   portal (see :ref:`portal-tabs`). Without an approved flavor, the launch
+   step below will fail.
 
 Launch Procedure
 ----------------
@@ -336,6 +333,7 @@ Install the kernel headers, build tools, and NVIDIA driver stack
 
 .. code-block:: bash
 
+   sudo apt update
    sudo apt install -y linux-headers-$(uname -r) \
                        linux-modules-extra-$(uname -r) \
                        build-essential dkms ubuntu-drivers-common
@@ -493,8 +491,8 @@ name, click **Validate**, then **Continue**.
 
    The project name is case-sensitive and must match your OpenStack project
    exactly. If validation fails, double-check it against your OpenStack
-   dashboard. *(Screenshot showing where to find the project name to be
-   added.)*
+   dashboard, where it appears in the project selector at the top left,
+   next to the OpenStack logo (shown as ``<domain> • <project>``).
 
 Select Date Range, Mode, and USRP
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -620,13 +618,14 @@ radio interface (usually ``ens4``).
 
 1. Run ``ip a`` to verify the new interface name. You should see ``ens4``
    listed without an IP address.
-2. Open the network configuration file. The filename may vary - run
-   ``ls /etc/netplan/`` first, as it is often ``50-cloud-init.yaml`` on
-   cloud images:
+2. Find the netplan configuration file (on cloud images it is often
+   ``50-cloud-init.yaml``), then open it, replacing ``<file-name>`` with the
+   name listed:
 
    .. code-block:: bash
 
-      sudo nano /etc/netplan/00-installer-config.yaml
+      ls /etc/netplan/
+      sudo nano /etc/netplan/<file-name>.yaml
 
 3. Add your ``ens4`` interface and the USRP IP address you noted from the
    OpenStack dashboard (append ``/24`` to it). The file should look like this:
@@ -773,9 +772,8 @@ Creating a Volume
 2. Click the **+ Create Volume** button located near the top right of the
    dashboard.
 3. Provide a name for the volume in the designated field.
-4. Select your **Volume Source**. If you are building from a backup like
-   in the video, select **Volume Snapshot** and choose the specific
-   snapshot from the dropdown.
+4. Select your **Volume Source**. To build from a backup, select
+   **Volume Snapshot** and choose the specific snapshot from the dropdown.
 5. Specify the desired capacity in the **Size (GiB)** field (e.g., ``128``).
 6. Click the blue **Create Volume** button to initialize the storage.
 
