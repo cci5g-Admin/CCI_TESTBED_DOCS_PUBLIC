@@ -20,6 +20,7 @@ CCI's xG Testbed documentation
 
    Getting Started <getting_started/user_access>
    OpenStack Guide <getting_started/openstack_v3>
+   SoloRAN Guide <getting_started/soloran>
    Support Guide <getting_started/support>
 
 .. .. toctree::
