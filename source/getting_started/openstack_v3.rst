@@ -457,27 +457,6 @@ Deploying a radio instance is a **two-stage process**:
 Booking USRP Resources (SDR Booking)
 ------------------------------------
 
-Reserve - and cancel - USRP nodes from the booking portal. The portal uses a
-tabbed layout: **Book USRP**, **My Reservations**, **USRP & GPU Access**,
-**OpenStack Quota**, and **Resources**.
-
-.. raw:: html
-
-   <div class="demo-videos">
-     <h3>How to Book a USRP</h3>
-     <video controls preload="metadata" playsinline crossorigin="anonymous" width="640">
-       <source src="../_static/USRP-booking-new.mp4" type="video/mp4">
-       Your browser does not support the video tag.
-     </video>
-     <p><a href="../_static/USRP-booking-new.mp4">Download video</a></p>
-   </div>
-
-Prerequisites
-~~~~~~~~~~~~~
-
-* An approved CCI xG account and your OpenStack project name
-  (e.g., ``External-Project-<firstname>``).
-
 Open the Booking Portal
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -569,6 +548,21 @@ port to your instance following the SDR network configuration steps below.
   Reservation Change**. Set **Request type** (e.g., ``Modify time``), enter the
   **Proposed start**/**Proposed end** and a **Reason**, then **Submit
   Request**.
+
+Reserve - and cancel - USRP nodes from the booking portal. The portal uses a
+tabbed layout: **Book USRP**, **My Reservations**, **USRP & GPU Access**,
+**OpenStack Quota**, and **Resources**.
+
+.. raw:: html
+
+   <div class="demo-videos">
+     <h3>How to Book a USRP</h3>
+     <video controls preload="metadata" playsinline crossorigin="anonymous" width="640">
+       <source src="../_static/USRP-booking-new.mp4" type="video/mp4">
+       Your browser does not support the video tag.
+     </video>
+     <p><a href="../_static/USRP-booking-new.mp4">Download video</a></p>
+   </div>
 
 
 Launch Procedure (Radio VM)
