@@ -45,6 +45,9 @@ often trip up new users.
   reserved for the matching time slot.
 * **Persistent vs ephemeral storage**: Set **Create New Volume = Yes** to keep
   data across rebuilds; ephemeral disks are wiped when the instance is deleted.
+  Without a volume, data **cannot be retrieved** if anything happens to the
+  server. Take regular volume snapshots and push your work to your own
+  GitHub/GitLab repository (see :ref:`volume-management`).
 * **Change default credentials**: Update the default image password
   (``CCI@2025``) on first login for any production workload.
 * **Free up resources**: Delete unused instances and volumes to stay within
@@ -159,10 +162,18 @@ Volumes let you boot instances from persistent storage and keep data across
 rebuilds. Create your volume **before** launching an instance, then select it
 as the boot **Source** in the launch procedure.
 
-.. important::
+.. warning::
 
-   Data on an instance's ephemeral disk cannot be recovered if the server has
-   a storage failure. Keep your work on a volume so it survives.
+   If you launch an instance **without a volume**, its data lives only on the
+   server's local disk. If anything happens to the server, that data
+   **cannot be retrieved**. To protect your work:
+
+   * Boot from a **volume** (or set **Create New Volume = Yes**) for every
+     instance you care about.
+   * Take a **volume snapshot** regularly (see :ref:`volume-snapshot`), so you
+     can restore your volume if something goes wrong.
+   * Push your code and important data to **your own GitHub or GitLab
+     repository** for version control and an off-testbed backup.
 
 Creating a Volume
 -----------------
@@ -177,6 +188,21 @@ Creating a Volume
 5. Specify the desired capacity in the **Size (GiB)** field (e.g., ``128``).
 6. Click the blue **Create Volume** button to initialize the storage.
 
+
+.. _volume-snapshot:
+
+Creating a Volume Snapshot
+--------------------------
+
+1. From the **Volumes** list, locate the volume you want to back up.
+2. Click the dropdown arrow in the **Actions** column and select
+   **Create Snapshot**.
+3. Enter a snapshot name (for example, include the date).
+4. Click **Create Volume Snapshot**.
+
+The snapshot appears under **Volumes → Snapshots**. To restore from it, create
+a new volume with **Volume Snapshot** as the source (see
+**Creating a Volume** above).
 
 Extending a Volume (Increasing Size)
 ------------------------------------
@@ -226,12 +252,12 @@ Launch Procedure
   Set the Availability Zone to ``compute``.
 * **Source**:
 
-  * Set **Select Boot Source** to **Instance Snapshot** (or **Volume**, if you
-    are booting from a volume you created - see :ref:`volume-management`).
+  * Set **Select Boot Source** to **Image** (or **Volume**, if you are booting
+    from a volume you created - see :ref:`volume-management`).
   * Set **Create New Volume** to **No** (ephemeral, wiped on delete) for
     standard testing, or **Yes** (persistent, saved to Cinder storage) to keep
     critical data.
-  * Select your desired snapshot or volume and click the **Up Arrow (↑)** to
+  * Select your desired image or volume and click the **Up Arrow (↑)** to
     move it into **Allocated**.
 
 * **Flavor**: Choose a flavor (e.g., ``m4.4.32``) and click the
@@ -241,8 +267,9 @@ Launch Procedure
 * **Launch**: Click **Launch Instance** and wait for the status to change to
   ``Active`` and power state to ``Running``.
 
-Once the instance is active, set up :ref:`terminal-access` to get a shell, then
-see :ref:`common-post-launch` for storage and security steps.
+Once the instance is ``Active``, connect to it over ZeroTier (see
+:ref:`terminal-access` at the end of this guide), then see
+:ref:`common-post-launch` for storage and security steps.
 
 .. tip::
 
@@ -280,8 +307,8 @@ Launch Procedure
 * Navigate to **Project → Compute → Instances** and click **Launch Instance**.
 * **Details**: Enter an Instance Name (e.g., ``test_gpu``).
   Set the Availability Zone to ``gpu``.
-* **Source**: Choose **Instance Snapshot** from the dropdown menu (or a
-  **Volume** you created). Select your source and click the **Up Arrow (↑)**.
+* **Source**: Choose **Image** from the dropdown menu (or a **Volume** you
+  created). Select your source and click the **Up Arrow (↑)**.
 
   .. note::
 
@@ -294,8 +321,9 @@ Launch Procedure
 * **Launch**: Click **Launch Instance** and wait for the status to change to
   ``Active``.
 
-Once active, set up :ref:`terminal-access` to connect, then continue with the
-GPU configuration below.
+Once the instance is ``Active``, connect to it over ZeroTier (see
+:ref:`terminal-access` at the end of this guide), then continue with the GPU
+configuration below.
 
 
 GPU Configuration & Validation
@@ -551,8 +579,8 @@ Once your USRP is booked, launch the radio host instance:
 * Navigate to **Project → Compute → Instances** and click **Launch Instance**.
 * **Details**: Enter an Instance Name. Set the Availability Zone to
   ``radio``.
-* **Source**: Choose **Instance Snapshot** from the dropdown menu (or a
-  **Volume** you created). Select your source and click the **Up Arrow (↑)**.
+* **Source**: Choose **Image** from the dropdown menu (or a **Volume** you
+  created). Select your source and click the **Up Arrow (↑)**.
 * **Flavor**: Choose an appropriate radio flavor and click the
   **Up Arrow (↑)**.
 * **Networks**: Allocate your own network, ``external-network-<firstname>``.
@@ -560,8 +588,9 @@ Once your USRP is booked, launch the radio host instance:
 * **Launch**: Click **Launch Instance** and wait for the status to change
   to ``Active``.
 
-Once active, set up :ref:`terminal-access`, then continue with the SDR network
-configuration below.
+Once the instance is ``Active``, connect to it over ZeroTier (see
+:ref:`terminal-access` at the end of this guide), then continue with the SDR
+network configuration below.
 
 
 SDR Network Configuration
@@ -738,26 +767,18 @@ Terminal Access (ZeroTier)
 
 There is no public SSH access and no floating IP in this testbed. You reach
 **every** instance - compute, GPU, and radio - over the project's **ZeroTier**
-overlay network. You install and authorize ZeroTier once on your local machine
-and once on each instance.
+overlay network.
+
+All testbed images (Ubuntu 18.04, 20.04, 22.04, and 24.04) come with ZeroTier
+already installed, so on each instance you only need to join the project
+network and get it authorized. On your local machine, install ZeroTier from
+https://www.zerotier.com/download/, then join and authorize it the same way.
 
 .. note::
 
    The project's **16-digit ZeroTier network ID** and device authorization are
    managed by the CCI admin team. Request the network ID and have your devices
    authorized before you begin.
-
-Install ZeroTier
-----------------
-
-Install ZeroTier on **both** your local machine and the instance. For the
-instance, open a shell through the OpenStack dashboard **Console** (noVNC) tab
-for this one-time setup - after this you will connect over ZeroTier:
-
-.. code-block:: bash
-
-   curl -s https://install.zerotier.com | sudo bash
-   sudo systemctl enable --now zerotier-one
 
 Join the Project Network
 ------------------------
@@ -800,9 +821,3 @@ image credentials (``ubuntu`` / ``CCI@2025``):
 .. code-block:: bash
 
    ssh ubuntu@<instance-zerotier-ip>
-
-.. important::
-
-   ZeroTier needs **UDP port 9993** open and **ICMP** allowed in the
-   ``default`` security group. See
-   :ref:`Network Connectivity & Security <network-connectivity>`.
