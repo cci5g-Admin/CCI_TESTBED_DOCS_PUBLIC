@@ -11,9 +11,10 @@ sections based on the availability zone of the instance:
 * :ref:`radio-deployment` - wireless / SDR workloads (includes USRP booking).
 
 Every user follows the same path: read :ref:`before-you-start`, log in, create
-your network and router **once**, set up :ref:`terminal-access`, then launch
-whichever instance type you need and finish with the
-:ref:`common post-launch steps <common-post-launch>`.
+your network and router **once**, create a :ref:`volume <volume-management>`
+to hold your data, then launch whichever instance type you need. Finish with
+the :ref:`common post-launch steps <common-post-launch>` and connect to your
+instance through :ref:`terminal-access`.
 
 .. contents::
    :local:
@@ -149,81 +150,56 @@ USRP networks here once an interface is attached.
    launch in the project - you only create them once.
 
 
-.. _terminal-access:
+.. _volume-management:
 
-Terminal Access (ZeroTier)
-==========================
+Volume Management
+=================
 
-There is no public SSH access and no floating IP in this testbed. You reach
-**every** instance - compute, GPU, and radio - over the project's **ZeroTier**
-overlay network. You install and authorize ZeroTier once on your local machine
-and once on each instance.
-
-.. note::
-
-   The project's **16-digit ZeroTier network ID** and device authorization are
-   managed by the CCI admin team. Request the network ID and have your devices
-   authorized before you begin.
-
-Install ZeroTier
-----------------
-
-Install ZeroTier on **both** your local machine and the instance. For the
-instance, open a shell through the OpenStack dashboard **Console** (noVNC) tab
-for this one-time setup - after this you will connect over ZeroTier:
-
-.. code-block:: bash
-
-   curl -s https://install.zerotier.com | sudo bash
-   sudo systemctl enable --now zerotier-one
-
-Join the Project Network
-------------------------
-
-.. code-block:: bash
-
-   sudo zerotier-cli join <network-id>
-
-Replace ``<network-id>`` with the 16-digit hexadecimal ID from the admin team.
-
-Authorize the Device
---------------------
-
-Print this device's 10-digit ID and send it to the admin team so they can
-authorize it on the ZeroTier controller:
-
-.. code-block:: bash
-
-   sudo zerotier-cli info
-
-Until the device is authorized, the network shows ``ACCESS_DENIED``.
-
-Confirm Your Assigned IP
-------------------------
-
-Once authorized, list your networks and note the assigned ZeroTier IP:
-
-.. code-block:: bash
-
-   sudo zerotier-cli listnetworks
-
-The network status changes to ``OK`` and an IP address is listed.
-
-Connect
--------
-
-From your authorized local machine, SSH to the instance's ZeroTier IP using the
-image credentials (``ubuntu`` / ``CCI@2025``):
-
-.. code-block:: bash
-
-   ssh ubuntu@<instance-zerotier-ip>
+Volumes let you boot instances from persistent storage and keep data across
+rebuilds. Create your volume **before** launching an instance, then select it
+as the boot **Source** in the launch procedure.
 
 .. important::
 
-   ZeroTier needs **UDP port 9993** open and **ICMP** allowed in the
-   ``default`` security group. See
-   :ref:`Network Connectivity & Security <network-connectivity>`.
+   Data on an instance's ephemeral disk cannot be recovered if the server has
+   a storage failure. Keep your work on a volume so it survives.
+
+Creating a Volume
+-----------------
+
+1. Navigate to the left-hand sidebar and select **Volumes**, then click on
+   **Volumes** from the dropdown.
+2. Click the **+ Create Volume** button located near the top right of the
+   dashboard.
+3. Provide a name for the volume in the designated field.
+4. Select your **Volume Source**. To build from a backup, select
+   **Volume Snapshot** and choose the specific snapshot from the dropdown.
+5. Specify the desired capacity in the **Size (GiB)** field (e.g., ``128``).
+6. Click the blue **Create Volume** button to initialize the storage.
+
+
+Extending a Volume (Increasing Size)
+------------------------------------
+
+1. From the **Volumes** list, locate the specific volume you want to
+   resize.
+2. Click the dropdown arrow next to **Edit Volume** in the **Actions**
+   column.
+3. Select **Extend Volume** from the menu.
+4. Enter the new, larger capacity in the **New Size (GiB)** field (for
+   example, upgrading from ``32`` to ``128``).
+5. Click **Extend Volume** to apply the new size limit.
+
+
+Attaching a Volume (Connecting to an Instance)
+----------------------------------------------
+
+1. From the **Volumes** list, locate the volume you want to connect.
+2. Click the dropdown arrow in the **Actions** column for that volume.
+3. Select **Manage Attachments**.
+4. Choose the target instance from the dropdown menu where you want the
+   volume mounted.
+5. Click **Attach Volume** to link the storage to your virtual machine.
 
 
 .. _compute-deployment:
@@ -755,48 +731,78 @@ workload through.
    testbed - keep all access scoped to the ZeroTier overlay.
 
 
-.. _volume-management:
+.. _terminal-access:
 
-Volume Management
-=================
+Terminal Access (ZeroTier)
+==========================
 
-Volumes let you boot instances from persistent storage and keep data across
-rebuilds. You can select a volume as the boot **Source** in any launch
-procedure.
+There is no public SSH access and no floating IP in this testbed. You reach
+**every** instance - compute, GPU, and radio - over the project's **ZeroTier**
+overlay network. You install and authorize ZeroTier once on your local machine
+and once on each instance.
 
-Creating a Volume
------------------
+.. note::
 
-1. Navigate to the left-hand sidebar and select **Volumes**, then click on
-   **Volumes** from the dropdown.
-2. Click the **+ Create Volume** button located near the top right of the
-   dashboard.
-3. Provide a name for the volume in the designated field.
-4. Select your **Volume Source**. To build from a backup, select
-   **Volume Snapshot** and choose the specific snapshot from the dropdown.
-5. Specify the desired capacity in the **Size (GiB)** field (e.g., ``128``).
-6. Click the blue **Create Volume** button to initialize the storage.
+   The project's **16-digit ZeroTier network ID** and device authorization are
+   managed by the CCI admin team. Request the network ID and have your devices
+   authorized before you begin.
 
+Install ZeroTier
+----------------
 
-Extending a Volume (Increasing Size)
-------------------------------------
+Install ZeroTier on **both** your local machine and the instance. For the
+instance, open a shell through the OpenStack dashboard **Console** (noVNC) tab
+for this one-time setup - after this you will connect over ZeroTier:
 
-1. From the **Volumes** list, locate the specific volume you want to
-   resize.
-2. Click the dropdown arrow next to **Edit Volume** in the **Actions**
-   column.
-3. Select **Extend Volume** from the menu.
-4. Enter the new, larger capacity in the **New Size (GiB)** field (for
-   example, upgrading from ``32`` to ``128``).
-5. Click **Extend Volume** to apply the new size limit.
+.. code-block:: bash
 
+   curl -s https://install.zerotier.com | sudo bash
+   sudo systemctl enable --now zerotier-one
 
-Attaching a Volume (Connecting to an Instance)
-----------------------------------------------
+Join the Project Network
+------------------------
 
-1. From the **Volumes** list, locate the volume you want to connect.
-2. Click the dropdown arrow in the **Actions** column for that volume.
-3. Select **Manage Attachments**.
-4. Choose the target instance from the dropdown menu where you want the
-   volume mounted.
-5. Click **Attach Volume** to link the storage to your virtual machine.
+.. code-block:: bash
+
+   sudo zerotier-cli join <network-id>
+
+Replace ``<network-id>`` with the 16-digit hexadecimal ID from the admin team.
+
+Authorize the Device
+--------------------
+
+Print this device's 10-digit ID and send it to the admin team so they can
+authorize it on the ZeroTier controller:
+
+.. code-block:: bash
+
+   sudo zerotier-cli info
+
+Until the device is authorized, the network shows ``ACCESS_DENIED``.
+
+Confirm Your Assigned IP
+------------------------
+
+Once authorized, list your networks and note the assigned ZeroTier IP:
+
+.. code-block:: bash
+
+   sudo zerotier-cli listnetworks
+
+The network status changes to ``OK`` and an IP address is listed.
+
+Connect
+-------
+
+From your authorized local machine, SSH to the instance's ZeroTier IP using the
+image credentials (``ubuntu`` / ``CCI@2025``):
+
+.. code-block:: bash
+
+   ssh ubuntu@<instance-zerotier-ip>
+
+.. important::
+
+   ZeroTier needs **UDP port 9993** open and **ICMP** allowed in the
+   ``default`` security group. See
+   :ref:`Network Connectivity & Security <network-connectivity>`.
