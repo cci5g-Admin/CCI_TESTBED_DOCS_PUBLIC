@@ -219,7 +219,6 @@ Admin Team
 
 - **Name:** Harshit Sai Teja Doddi  
 - **Role:** Network Administrator
-- **Focus:** Network Administration and Management
 - **Report To:** Dr Aloizio Da Silva 
 |
 |

@@ -269,7 +269,7 @@ Launch Procedure
 
 Once the instance is ``Active``, connect to it over ZeroTier (see
 :ref:`terminal-access` at the end of this guide), then see
-:ref:`common-post-launch` for storage and security steps.
+:ref:`common-post-launch` for storage steps.
 
 .. tip::
 
@@ -725,34 +725,6 @@ you must manually expand the storage:
    sudo lvextend -r -l +100%FREE /dev/mapper/ubuntu--vg-ubuntu--lv
 
 
-.. _network-connectivity:
-
-Network Connectivity & Security
--------------------------------
-
-All terminal access is over ZeroTier (see :ref:`terminal-access`), so the
-``default`` security group only needs the rules that let ZeroTier and your
-workload through.
-
-* **ZeroTier transport**: Navigate to **Network → Security Groups** and click
-  **Manage Rules** for the ``default`` group. Add the following:
-
-  * **Custom UDP Rule** - Port ``9993`` (ZeroTier's default transport port).
-  * **All ICMP** - to allow ``ping`` for reachability checks across the
-    ZeroTier network.
-
-* **SSH over ZeroTier**: Add an **SSH** (TCP ``22``) rule, but restrict the
-  CIDR to the project's ZeroTier subnet rather than ``0.0.0.0/0`` so the port
-  is not exposed to the public internet.
-* **Additional protocols**: Add any application-specific ports your experiment
-  needs (e.g., HTTP/HTTPS, custom TCP/UDP ranges).
-
-.. warning::
-
-   Never open SSH to ``0.0.0.0/0``. There is no public access path in this
-   testbed - keep all access scoped to the ZeroTier overlay.
-
-
 .. _terminal-access:
 
 Terminal Access (ZeroTier)
@@ -766,12 +738,6 @@ All testbed images (Ubuntu 18.04, 20.04, 22.04, and 24.04) come with ZeroTier
 already installed, so on each instance you only need to join the project
 network and get it authorized. On your local machine, install ZeroTier from
 https://www.zerotier.com/download/, then join and authorize it the same way.
-
-.. note::
-
-   The project's **16-digit ZeroTier network ID** and device authorization are
-   managed by the CCI admin team. Request the network ID and have your devices
-   authorized before you begin.
 
 Join the Project Network
 ------------------------
