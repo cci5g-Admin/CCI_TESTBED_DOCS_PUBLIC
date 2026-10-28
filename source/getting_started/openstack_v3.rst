@@ -430,32 +430,19 @@ In a second terminal, monitor utilization and check for hardware errors:
 Radio Instance Deployment
 =========================
 
+Booking USRP Resources (SDR Booking)
+------------------------------------
+
 .. raw:: html
 
    <div class="demo-videos">
-     <h3>How to Create a Radio Node</h3>
+     <h3>How to Book a USRP</h3>
      <video controls preload="metadata" playsinline crossorigin="anonymous" width="640">
-       <source src="../_static/Radio-Instance.mp4" type="video/mp4">
+       <source src="../_static/USRP-booking-new.mp4" type="video/mp4">
        Your browser does not support the video tag.
      </video>
-     <p><a href="../_static/Radio-Instance.mp4">Download video</a></p>
+     <p><a href="../_static/USRP-booking-new.mp4">Download video</a></p>
    </div>
-
-Deploying a radio instance is a **two-stage process**:
-
-1. **Book a USRP** on the CCI xG Testbed booking portal (see below).
-2. **Launch a Radio VM** in the ``radio`` availability zone to act as the
-   host for the booked USRP.
-
-.. important::
-
-   You must complete the USRP booking **before** launching the radio VM.
-   The VM will not be able to communicate with an SDR unit you have not
-   reserved.
-
-
-Booking USRP Resources (SDR Booking)
-------------------------------------
 
 Open the Booking Portal
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -553,20 +540,32 @@ Reserve - and cancel - USRP nodes from the booking portal. The portal uses a
 tabbed layout: **Book USRP**, **My Reservations**, **USRP & GPU Access**,
 **OpenStack Quota**, and **Resources**.
 
-.. raw:: html
-
-   <div class="demo-videos">
-     <h3>How to Book a USRP</h3>
-     <video controls preload="metadata" playsinline crossorigin="anonymous" width="640">
-       <source src="../_static/USRP-booking-new.mp4" type="video/mp4">
-       Your browser does not support the video tag.
-     </video>
-     <p><a href="../_static/USRP-booking-new.mp4">Download video</a></p>
-   </div>
-
 
 Launch Procedure (Radio VM)
 ---------------------------
+
+.. raw:: html
+
+   <div class="demo-videos">
+     <h3>How to Create a Radio Node</h3>
+     <video controls preload="metadata" playsinline crossorigin="anonymous" width="640">
+       <source src="../_static/Radio-Instance.mp4" type="video/mp4">
+       Your browser does not support the video tag.
+     </video>
+     <p><a href="../_static/Radio-Instance.mp4">Download video</a></p>
+   </div>
+
+Deploying a radio instance is a **two-stage process**:
+
+1. **Book a USRP** on the CCI xG Testbed booking portal (see above).
+2. **Launch a Radio VM** in the ``radio`` availability zone to act as the
+   host for the booked USRP.
+
+.. important::
+
+   You must complete the USRP booking **before** launching the radio VM.
+   The VM will not be able to communicate with an SDR unit you have not
+   reserved.
 
 Once your USRP is booked, launch the radio host instance:
 
