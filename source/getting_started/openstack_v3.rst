@@ -714,7 +714,7 @@ radio) once the VM is ``Active``.
 Expanding Instance Storage
 --------------------------
 
-If you launched with a disk size larger than the default Instance Snapshot,
+If you launched with a disk size larger than the default Image,
 you must manually expand the storage:
 
 .. code-block:: bash
